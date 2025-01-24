@@ -1,8 +1,12 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx,html}"],
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        porsche: ["PorscheNext", "sans-serif"],
+      },
+    },
   },
   plugins: [],
-};
+}
+

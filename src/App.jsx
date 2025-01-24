@@ -7,7 +7,7 @@ function App() {
     <div className="h-full w-full ">
       <Nav />
       <div>
-        <Hero />
+        <Hero className="z-10" />
         <RenderModel className = "-z-20" />
       </div>
     </div>

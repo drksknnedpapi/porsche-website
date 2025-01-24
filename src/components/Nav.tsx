@@ -1,22 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
+import { ChevronRight } from "lucide-react";
+import { mainNavItems, models } from "../assets/components";
 
-function menu() {
+function Menu({ isOpen, toggleSidebar }) {
+  const [openSubmenu, setOpenSubmenu] = useState(null);
+
+  const toggleSubMenu = (index) => {
+    setOpenSubmenu(openSubmenu === index ? null : index);
+  };
+
   return (
-    <>
-      <aside className="">
-        <div></div>
+    <div className="flex  ">
+      <aside
+        className={`fixed top-0 z-100  left-0 h-full w-[50%] bg-gray-800 text-white transition-transform transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+        style={{ zIndex: 50 }}
+      >
+        {/* Sidebar Content */}
+        <div className="px-[5.4rem] ">
+          <div className="px=[200px]">
+            <ul className="mt-[4.5rem]">
+              {mainNavItems.map((item, index) => (
+                <li key={item.title} className="border-b border-gray-100">
+                  <button
+                    className="flex items-center justify-between w-full px-6 py-4 text-left hover:bg-gray-50 focus:outline-none"
+                    onClick={() => item.items && toggleSubMenu(index)}
+                  >
+                    <span>{item.title}</span>
+                    {item.items && (
+                      <ChevronRight
+                        className={`w-5 h-5 transition-transform ${
+                          openSubmenu === index ? "rotate-90" : ""
+                        }`}
+                      />
+                    )}
+                  </button>
+                  {item.items && openSubmenu === index && (
+                    <ul className="bg-gray-50">
+                      {item.items.map((model) => (
+                        <li key={model.name} className="p-6">
+                          <h3 className="text-lg font-medium">{model.name}</h3>
+                          <div className="mt-2 flex gap-2">
+                            {model.variants.map((variant) => (
+                              <span
+                                key={variant}
+                                className="text-xs text-gray-600"
+                              >
+                                {variant}
+                              </span>
+                            ))}
+                          </div>
+                          {/* Placeholder for model image */}
+                          <div className="mt-4 aspect-[16/9] w-full bg-gray-200" />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </aside>
-    </>
+    </div>
   );
 }
 
-
 export default function Nav() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="absolute z-100 w-screen">
-      <header className="h-[4.5625rem] w-full top-0 left-0 right-0 backdrop-blur-md bg-white/10 border-b border-white/20 shadow-md">
-        <nav className="text-black flex p-6  gap-10 justify-between  w-full">
-          <div >Menu</div>
+    <div className="absolute z-50 w-screen">
+      {/* Sidebar Component */}
+      <Menu isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      <header
+        className="h-[4.5625rem] w-full top-0 left-0 right-0 backdrop-blur-md bg-white/10 border-b border-white/20 shadow-md "
+        style={{ zIndex: 10 }}
+      >
+        <nav
+          className="text-black relative flex p-6  gap-10 justify-between w-[90%] ml-[60px]"
+          style={{
+            alignItems: "center",
+          }}
+        >
+          {/* Menu Button */}
+          <div>
+            <button
+              onClick={toggleSidebar}
+              className="w-[100px] flex h-[fit-content]"
+              style={{
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* Menu Icon */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="40%"
+                height="fit-content"
+              >
+                <path d="M18 16v1H6v-1zm0-5v1H6v-1zm0-5v1H6V6z" />
+              </svg>{" "}
+              <span>Menu</span>
+            </button>
+          </div>
+
+          {/* Logo */}
           <div>
             <div className="w-[300px]">
               <a href="/">
@@ -27,7 +124,23 @@ export default function Nav() {
               </a>
             </div>
           </div>
-          <div>User</div>
+
+          {/* Placeholder for User Icon */}
+          <div>
+            <li style={{ listStyleType: "none" }} title="User">
+              <button type="button">
+                <a href="/">
+                  <img
+                    src="https://cdn.ui.porsche.com/porsche-design-system/icons/user.c18dabe.svg"
+                    width="30"
+                    height="30"
+                    loading="lazy"
+                    alt=""
+                  />
+                </a>
+              </button>
+            </li>
+          </div>
         </nav>
       </header>
     </div>

@@ -2,17 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+@import url(https://db.onlinewebfonts.com/c/2ad24930d996d33544708f0637f7690a?family=Porsche+Next); 
 
-    color-scheme: light dark;
-    color: rgba(217, 217, 217, 0.87);
-    background-color: #dadada;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Porsche Next";
+  src: url("https://db.onlinewebfonts.com/t/2ad24930d996d33544708f0637f7690a.eot");
+  src: url("https://db.onlinewebfonts.com/t/2ad24930d996d33544708f0637f7690a.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/2ad24930d996d33544708f0637f7690a.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/2ad24930d996d33544708f0637f7690a.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/2ad24930d996d33544708f0637f7690a.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/2ad24930d996d33544708f0637f7690a.svg#Porsche Next")format("svg");
 }
+
+
+@font-face {
+  font-family: "PorscheNext";
+  src: url("/fonts/PorscheNextWLa-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PorscheNext";
+  src: url("/fonts/PorscheNextWLa-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "PorscheNext", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Optional: Create utility classes */
+.font-porsche-regular {
+  font-family: "PorscheNext", sans-serif;
+  font-weight: normal;
+}
+
+.font-porsche-bold {
+  font-family: "PorscheNext", sans-serif;
+  font-weight: bold;
+}
+
+:root {
+  line-height: 1.5;
+  font-family: "PorscheNext", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(217, 217, 217, 0.87);
+  background-color: #dadada;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
