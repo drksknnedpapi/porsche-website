@@ -1,4 +1,3 @@
-
 const models = [
     { name: "Taycan", variants: ["Electric"] },
     { name: "Panamera", variants: ["Hybrid", "Gasoline"] },
@@ -9,13 +8,12 @@ const models = [
 
 const mainNavItems = [
     { title: "Models", items: models },
-    { title: "Vehicle Purchase" },
-    { title: "Services" },
-    { title: "Experience" },
-    { title: "Find a Dealer" },
-    {
-        title: "Close "
-    }
+    {title: "Shopping Tools"},
+    {title: "Porsche Shop"},
+    {title: "Services"},
+    {title: "Experience"},
+    { title: "Find Your Porsche Center" },
+    {title: "My Porsche"}
 ]
 
 
