@@ -1,5 +1,5 @@
-import React from "react"
-import { ChevronRight } from "lucide-react"
+import React from "react";
+import { ChevronRight } from "lucide-react";
 
 import {
   Sidebar,
@@ -11,7 +11,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "./ui/sidebar";
 
 // Sample data structure
 const models = [
@@ -31,7 +31,7 @@ const models = [
     name: "Cayenne",
     variants: ["Hybrid", "Gasoline"],
   },
-]
+];
 
 const mainNavItems = [
   {
@@ -50,9 +50,9 @@ const mainNavItems = [
   {
     title: "Find a Dealer",
   },
-]
+];
 
-export function PorscheSidebar() {
+export default function PorscheSidebar() {
   return (
     <Sidebar className="border-none bg-white">
       <SidebarHeader className="p-6">
@@ -78,10 +78,15 @@ export function PorscheSidebar() {
                         className="group flex flex-col items-start gap-4 p-6 hover:bg-neutral-100"
                       >
                         <div>
-                          <div className="text-lg font-medium">{model.name}</div>
+                          <div className="text-lg font-medium">
+                            {model.name}
+                          </div>
                           <div className="mt-2 flex gap-2">
                             {model.variants.map((variant) => (
-                              <span key={variant} className="text-xs text-neutral-600">
+                              <span
+                                key={variant}
+                                className="text-xs text-neutral-600"
+                              >
                                 {variant}
                               </span>
                             ))}
@@ -99,6 +104,5 @@ export function PorscheSidebar() {
         </SidebarMenu>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
-

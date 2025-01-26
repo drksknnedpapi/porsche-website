@@ -1,75 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { ChevronRight } from "lucide-react";
-import { mainNavItems, models } from "../assets/components";
+import { useEffect, useState } from "react";
+
+import PorscheSidebar from "./porsche-sidebar";
 
 function Menu({ isOpen, toggleSidebar }) {
-  const [openSubmenu, setOpenSubmenu] = useState(null);
-
-  const toggleSubMenu = (index) => {
-    setOpenSubmenu(openSubmenu === index ? null : index);
-  };
-
   return (
-    <div className="flex  ">
+    <div className="flex">
       <aside
-        className={`fixed top-0 z-100  left-0 h-full w-[50%] bg-gray-800 text-white transition-transform transform ${
+        className={`fixed top-0 left-0 h-full w-[50%] bg-white transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{ zIndex: 50 }}
       >
-        {/* Sidebar Content */}
-        <div className="px-[5.4rem] ">
-          <div className="px=[200px]">
-            <ul className="mt-[4.5rem]">
-              {mainNavItems.map((item, index) => (
-                <li key={item.title} className="border-b border-gray-100">
-                  <button
-                    className="flex items-center justify-between w-full px-6 py-4 text-left hover:bg-gray-50 hover:text-black  focus:outline-none transition-all duration-[300ms] ease-in-out"
-                    onClick={() => item.items && toggleSubMenu(index)}
-                  >
-                    <span>{item.title}</span>
-                    {item.items && (
-                      <ChevronRight
-                        className={`w-5 h-5 transition-transform ${
-                          openSubmenu === index ? "rotate-90" : ""
-                        }`}
-                      />
-                    )}
-                  </button>
-                  {item.items && openSubmenu === index && (
-                    <ul className="bg-gray-50">
-                      {item.items.map((model) => (
-                        <li key={model.name} className="p-6">
-                          <h3 className="text-lg font-medium">{model.name}</h3>
-                          <div className="mt-2 flex gap-2">
-                            {model.variants.map((variant) => (
-                              <span
-                                key={variant}
-                                className="text-xs text-gray-600"
-                              >
-                                {variant}
-                              </span>
-                            ))}
-                          </div>
-                          {/* Placeholder for model image */}
-                          <div className="mt-4 aspect-[16/9] w-full bg-gray-200" />
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
+        {/* Sidebar Component */}
+        <PorscheSidebar />
 
-              <li className="border-b border-gray-100">
-                <button
-                  className="flex items-center justify-between w-full px-6 py-4 text-left hover:bg-gray-50 focus:outline-none"
-                  onClick={toggleSidebar}
-                >
-                  <span>Close</span>
-                </button>
-              </li>
-            </ul>
-          </div>
+        {/* Close Button */}
+        <div className="px-6 py-4 border-t border-gray-100">
+          <button
+            className="w-full text-left text-gray-800 hover:bg-gray-100 px-6 py-4 focus:outline-none transition-all duration-300 ease-in-out"
+            onClick={toggleSidebar}
+          >
+            Close
+          </button>
         </div>
       </aside>
     </div>

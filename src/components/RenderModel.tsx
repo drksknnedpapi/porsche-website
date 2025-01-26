@@ -4,25 +4,20 @@ import clsx from "clsx";
 import { OrbitControls } from "@react-three/drei";
 import { PorscheModel } from "../models/PorscheModel";
 
+function ResponsiveModel() {
+  const { viewport } = useThree();
+  const scaleFactor = Math.min(viewport.width ** 2 / viewport.height, 1.5);
 
-function ResponsiveModel () {
-
-    const { viewport } = useThree();
-    const scaleFactor = Math.min(viewport.width**2 / viewport.height, 1.5);
-
-    return(
-        <PorscheModel scale = {[scaleFactor, scaleFactor, scaleFactor]}/>
-    )
+  return <PorscheModel scale={[scaleFactor, scaleFactor, scaleFactor]} />;
 }
 
 const RenderModel = ({ children, className }) => {
-
   return (
     <div className="h-screen w-screen">
       <Canvas className={clsx("w-screen h-screen relative", className)}>
         <Suspense fallback={null}>{children}</Suspense>
         <mesh rotation={[0, Math.PI / 4, 0]} position={[0, 0, 0]}>
-            <ResponsiveModel />
+          <ResponsiveModel />
         </mesh>
         <ambientLight intensity={3.5} />
         <directionalLight position={[0, 10, 0]} intensity={0.5} />
@@ -34,19 +29,16 @@ const RenderModel = ({ children, className }) => {
           intensity={1}
           castShadow
         />
-        <hemisphereLight
-          groundColor={"#54d1ff"}
-          intensity={2.5}
-        />
+        <hemisphereLight groundColor={"#54d1ff"} intensity={2.5} />
 
         <OrbitControls
           autoRotate={true}
           autoRotateSpeed={1.3}
           enableZoom={false}
           enablePan={false}
-           // Restrict vertical rotation (polar angle)
-        minPolarAngle={Math.PI / 4}   // 45 degrees
-        maxPolarAngle={Math.PI / 2}   // 90 degrees
+          // Restrict vertical rotation (polar angle)
+          minPolarAngle={Math.PI / 4} // 45 degrees
+          maxPolarAngle={Math.PI / 2} // 90 degrees
         />
       </Canvas>
     </div>
